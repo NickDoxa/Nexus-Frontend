@@ -1,0 +1,34 @@
+@font-face {
+    font-family: NexusHeaderMod;
+    src: url("fonts/moderna.ttf");
+}
+
+@font-face {
+    font-family: NexusHeaderGeo;
+    src: url("fonts/geometry.otf");
+}
+
+@font-face {
+    font-family: NexusBodyHack;
+    src: url("fonts/hack.ttf");
+}
+
+@font-face {
+    font-family: NexusBodyHackBold;
+    src: url("fonts/hackBold.ttf");
+}
+
+@font-face {
+    font-family: NexusBodyHackItalic;
+    src: url("fonts/hackItalic.ttf");
+}
+
+@font-face {
+    font-family: NexusBodyHackBoldItalic;
+    src: url("fonts/hackBoldItalic.ttf");
+}
+
+@font-face {
+    font-family: NexusBodyMonda;
+    src: url("fonts/mondapick.ttf");
+}
