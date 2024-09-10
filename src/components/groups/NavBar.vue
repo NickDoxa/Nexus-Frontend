@@ -31,7 +31,7 @@ const openMenu = () => dropdownOpen.value = !dropdownOpen.value;
                           :textdecoration="false"
                           :backgroundcolor="'#9F21E3'"
                           :textcolor="'#F2EBFB'"
-                          :hovercolor="'#190028'"
+                          :hovercolor="'#F2EBFB'"
                           :linkto="'/signup'"
                           :isrouterlink="true"
                           :text="'Sign Up'"
