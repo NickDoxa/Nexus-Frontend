@@ -1,20 +1,20 @@
 <script setup>
-import axios from 'axios'
-import { ref } from 'vue'
+import HomeAPI from '@/common/HomeAPI.js'
+import { onBeforeMount, ref } from 'vue'
 
 const count = ref(0)
-const getCount = async () => {
-  await axios.get("http://localhost:8080/api/home/user-count")
-    .then((response) => {
-      const data = response.data
-      count.value = data.userCount;
-    })
-    .catch((exception) => {
-      return exception;
-    })
-  return null;
-}
-getCount()
+
+onBeforeMount(async () => {
+  try {
+    const response = await HomeAPI.getCount()
+    count.value = response?.data.userCount ?? 0
+    return true
+  } catch (error) {
+    console.log(error)
+  }
+  return false
+})
+
 </script>
 
 <template>
@@ -36,8 +36,13 @@ getCount()
 .user-count-inner {
   margin: auto;
   width: 60%;
-  border: 3px solid #32004F;
+  border: 0.2rem solid #32004F;
   padding: 8px;
   border-radius: 30px;
+  transition: background-color .2s ease-in-out;
+}
+
+.user-count-inner:hover {
+  background-color: #32004F;
 }
 </style>
