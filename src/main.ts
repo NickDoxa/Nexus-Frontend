@@ -40,7 +40,7 @@ app.use(createAuth0({
   authorizationParams: {
     redirect_uri: import.meta.env.VITE_AUTH0_CALLBACK_URL,
     audience: import.meta.env.VITE_AUTH0_AUDIENCE,
-    scope: 'read:messages'
+    scope: 'openid email profile'
   },
 }))
 app.directive('animateonscroll', AnimateOnScroll)
