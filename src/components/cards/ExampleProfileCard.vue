@@ -5,7 +5,6 @@ import { faGamepad } from '@fortawesome/free-solid-svg-icons/faGamepad'
 import RotatingHover from '@/components/animations/RotatingHover.vue'
 
 const props = defineProps({
-  fadein: Boolean,
   icon: Object
 })
 

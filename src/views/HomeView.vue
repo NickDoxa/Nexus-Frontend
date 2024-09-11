@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import LogoBanner from "@/components/images/LogoBanner.vue";
 import TextWithHeader from '@/components/textbox/TextWithHeader.vue'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'
@@ -26,7 +26,7 @@ import UserCount from '@/components/textbox/UserCount.vue'
   </div>
   <!-- ACTION BUTTONS -->
   <GridGroup :columns="'1fr 1fr 1fr'" :width="'40%'">
-    <FadedComponent><HoverScale :scalesize="1.02">
+    <FadedComponent :scroll="false"><HoverScale :scalesize="1.02">
       <ActionButton :text="'Youtube'"
                     :icon="faYoutube"
                     :useicon="true"
@@ -38,7 +38,7 @@ import UserCount from '@/components/textbox/UserCount.vue'
                     :minbtnwidth="'147px'"
       />
     </HoverScale></FadedComponent>
-    <FadedComponent><HoverScale :scalesize="1.02">
+    <FadedComponent :scroll="false"><HoverScale :scalesize="1.02">
       <ActionButton :text="'GitHub'"
                     :icon="faGithub"
                     :useicon="true"
@@ -50,7 +50,7 @@ import UserCount from '@/components/textbox/UserCount.vue'
                     :minbtnwidth="'147px'"
       />
     </HoverScale></FadedComponent>
-    <FadedComponent><HoverScale :scalesize="1.02">
+    <FadedComponent :scroll="false"><HoverScale :scalesize="1.02">
       <!-- TODO add correct link once server is made -->
       <ActionButton :text="'Discord'"
                     :icon="faDiscord"
@@ -66,7 +66,7 @@ import UserCount from '@/components/textbox/UserCount.vue'
   </GridGroup>
   <!-- TEXT: HOW DOES IT WORK-->
   <GridGroup :columns="'1fr 1fr'" :width="'70%'">
-    <FadedComponent>
+    <FadedComponent :scroll="true">
       <TextWithHeader :title="'How does it work?'"
                       :headercolor="'#9F21E3'"
                       :text="'Game Nexus is the centralized data center for gamers around the world! After creating an account you can setup your personal profile card! You choose which games, or platforms, you want to link to your Nexus Account, and then you can choose whether or not your card should show up publicly, or privately via custom link! Check out this example profile card...'"
@@ -74,11 +74,13 @@ import UserCount from '@/components/textbox/UserCount.vue'
                       :useicon="true"
                       :icon="faGlobe" />
     </FadedComponent>
-    <ExampleProfileCard :fadein="true"/>
+    <FadedComponent :scroll="true">
+      <ExampleProfileCard/>
+    </FadedComponent>
   </GridGroup>
   <!-- INFO CARDS -->
   <GridGroup :columns="'1fr 1fr 1fr'" :width="'80%'">
-    <FadedComponent><HoverScale :scalesize="1.02">
+    <FadedComponent :scroll="true"><HoverScale :scalesize="1.02">
       <InfoCard :color="'#FFFFFF'"
                 :backgroundcolor="'#3A015C'"
                 :useicon="true"
@@ -87,7 +89,7 @@ import UserCount from '@/components/textbox/UserCount.vue'
                 :text="'Your account. Your way! On Nexus you can choose what kind of profile you show to the other gamers in the world with custom profile pictures, statuses, connections, and more!'"
       />
     </HoverScale></FadedComponent>
-    <FadedComponent><HoverScale :scalesize="1.02">
+    <FadedComponent :scroll="true"><HoverScale :scalesize="1.02">
       <InfoCard :color="'#FFFFFF'"
                 :backgroundcolor="'#190028'"
                 :useicon="true"
@@ -96,7 +98,7 @@ import UserCount from '@/components/textbox/UserCount.vue'
                 :text="'The Nexus directory has been and will always be free! Search for any player or platform for free with no strings attached!'"
       />
     </HoverScale></FadedComponent>
-    <FadedComponent><HoverScale :scalesize="1.02">
+    <FadedComponent :scroll="true"><HoverScale :scalesize="1.02">
       <InfoCard :color="'#FFFFFF'"
                 :backgroundcolor="'#3A015C'"
                 :useicon="true"
@@ -107,13 +109,13 @@ import UserCount from '@/components/textbox/UserCount.vue'
     </HoverScale></FadedComponent>
   </GridGroup>
   <!-- USER COUNT -->
-  <FadedComponent>
+  <FadedComponent :scroll="true">
     <UserCount/>
   </FadedComponent>
   <!-- TEXT: WHATS THE POINT -->
   <GridGroup :columns="'1fr 1fr'" :width="'70%'">
-    <ImageBox :src="'connected.png'" :alt="'Connected Diagram'" :height="'250px'" :width="'auto'"/>
-    <FadedComponent>
+    <ImageBox :src="'connected.png'" :alt="'Connected Diagram'" :height="'250px'" :width="'auto'" :fadeonscroll="true"/>
+    <FadedComponent :scroll="true">
       <TextWithHeader :useicon="true"
                       :icon="faQuestionCircle"
                       :title="'So what\'s the point...'"

@@ -1,4 +1,18 @@
 @import './fonts.css';
+@import 'primeflex/primeflex.css';
+
+/* TAILWIND CSS */
+
+@layer tailwind-base, primevue, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
 
 /* GENERAL CLASSES AND ELEMENTS */
 

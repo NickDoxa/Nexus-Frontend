@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
 import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark'
@@ -8,7 +8,7 @@ import ActionButton from '@/components/buttons/ActionButton.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ref } from 'vue'
 
-const dropdownOpen = ref(false);
+const dropdownOpen = ref<boolean>(false);
 const openMenu = () => dropdownOpen.value = !dropdownOpen.value;
 
 </script>
@@ -17,7 +17,7 @@ const openMenu = () => dropdownOpen.value = !dropdownOpen.value;
   <header>
     <div id="nav" class="nav-bar">
       <div class="side-container">
-        <img alt="game nexus icon" src="@/assets/images/iconLogo.png" class="icon">
+        <img alt="game nexus icon" src="../../../public/iconLogo.png" class="icon">
       </div>
       <ul class="nav-links">
         <li><RouterLink to="/">Nexus</RouterLink></li>
@@ -25,7 +25,7 @@ const openMenu = () => dropdownOpen.value = !dropdownOpen.value;
         <li><RouterLink to="/login">Login</RouterLink></li>
       </ul>
       <div class="side-container">
-        <FadedComponent>
+        <FadedComponent :scroll="false">
           <HoverScale :scalesize="1.03">
             <ActionButton style="float:right;"
                           :textdecoration="false"

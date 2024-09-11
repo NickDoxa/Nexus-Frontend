@@ -1,26 +1,40 @@
-<script setup>
+<script setup lang="ts">
 import HomeAPI from '@/common/HomeAPI.js'
 import { onBeforeMount, ref } from 'vue'
+import delay from '@/common/Delay.js'
+import {vElementVisibility} from '@vueuse/components'
 
-const count = ref(0)
+const timeToUpdateSeconds = 2;
+const count = ref<number>(0)
+const updatedCount = ref<number>(0)
+const updateCountToTotal = async () => {
+  if (count.value >= updatedCount.value) return;
+  count.value = 0;
+  const totalMillisStep = (timeToUpdateSeconds / updatedCount.value)
+  for (let i = 0; i < updatedCount.value; i++) {
+    await delay(totalMillisStep)
+    count.value++;
+  }
+}
 
 onBeforeMount(async () => {
   try {
     const response = await HomeAPI.getCount()
-    count.value = response?.data.userCount ?? 0
+    //hehehe spoofed user count
+    updatedCount.value = response?.data?.userCount ?? 0
     return true
   } catch (error) {
     console.log(error)
   }
   return false
 })
-
 </script>
 
 <template>
   <div class="user-count-container">
-    <div class="user-count-inner">
-      <h1>Current User Count: <span style="font-family: NexusBodyHack, sans-serif">{{count === null ? '' : count}}</span></h1>
+    <div class="user-count-inner" v-element-visibility="updateCountToTotal">
+      <h1>Current User Count: <span style="font-family: NexusBodyHack, sans-serif">
+        {{count === null ? '' : count}}</span></h1>
     </div>
   </div>
 </template>

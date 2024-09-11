@@ -1,12 +1,13 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import FadedComponent from '@/components/animations/FadedComponent.vue'
-const props = defineProps({
+const props = defineProps<{
   alt: String,
   src: String,
-  height: String,
-  width: String
-})
+  height?: String,
+  width?: String,
+  fadeonscroll: Boolean,
+}>()
 
 const styleObj = computed(() => {
   return {
@@ -19,8 +20,8 @@ const styleObj = computed(() => {
 
 <template>
  <div class="img-box-container">
-   <FadedComponent>
-     <img :alt="props.alt" :src="'/src/assets/images/' + props.src" class="img-box" :style="styleObj">
+   <FadedComponent :scroll="fadeonscroll">
+     <img :alt="props.alt" :src="'@/assets/images' + props.src" class="img-box" :style="styleObj">
    </FadedComponent>
  </div>
 </template>
