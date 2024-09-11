@@ -77,8 +77,8 @@ const openMenu = () => (dropdownOpen.value = !dropdownOpen.value)
       <ul>
         <li><RouterLink to="/">Nexus</RouterLink></li>
         <li><RouterLink to="/directory">Directory</RouterLink></li>
-        <li><RouterLink to="/login">Login</RouterLink></li>
-        <li><RouterLink to="/signup">Sign Up</RouterLink></li>
+        <li><a href="#" @click="handleLogin">Login</a></li>
+        <li><a href="#" @click="handleSignup">Sign Up</a></li>
       </ul>
     </div>
   </header>
