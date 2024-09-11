@@ -7,20 +7,20 @@ const props = defineProps({
 
 const styleObj = computed(() => {
   return {
-    '--scale-size' : props.scalesize
+    '--scale-size': props.scalesize
   }
 })
 </script>
 
 <template>
   <div class="hover-scale" :style="styleObj">
-    <slot/>
+    <slot />
   </div>
 </template>
 
 <style scoped>
 .hover-scale {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   height: 100%;
 }
 

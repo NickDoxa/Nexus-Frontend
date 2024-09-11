@@ -1,12 +1,12 @@
 <template>
- <div class="rotating-anim">
-   <slot/>
- </div>
+  <div class="rotating-anim">
+    <slot />
+  </div>
 </template>
 
 <style scoped>
 .rotating-anim {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .rotating-anim:hover {

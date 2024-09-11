@@ -14,7 +14,7 @@ const props = defineProps({
 const styleObj = computed(() => {
   return {
     '--card-background-color': props.backgroundcolor,
-    '--card-color' : props.color,
+    '--card-color': props.color
   }
 })
 </script>
@@ -22,10 +22,10 @@ const styleObj = computed(() => {
 <template>
   <div class="info-card" :style="styleObj">
     <div class="info-card-inner">
-      <FontAwesomeIcon v-if="props.useicon" :icon="props.icon" class="info-card-icon"/>
-      <h2>{{props.header}}</h2>
-      <br/>
-      <p>{{props.text}}</p>
+      <FontAwesomeIcon v-if="props.useicon" :icon="props.icon" class="info-card-icon" />
+      <h2>{{ props.header }}</h2>
+      <br />
+      <p>{{ props.text }}</p>
     </div>
   </div>
 </template>

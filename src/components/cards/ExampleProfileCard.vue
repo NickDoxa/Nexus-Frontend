@@ -1,5 +1,4 @@
 <script setup>
-
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faGamepad } from '@fortawesome/free-solid-svg-icons/faGamepad'
 import RotatingHover from '@/components/animations/RotatingHover.vue'
@@ -7,26 +6,27 @@ import RotatingHover from '@/components/animations/RotatingHover.vue'
 const props = defineProps({
   icon: Object
 })
-
 </script>
 
 <template>
-<div class="card-container">
-  <div class="outer-card">
-    <RotatingHover>
-      <div class="inner-card" :class="{'fade-in' : props.fadein}">
-        <div class="card-top">
-          <FontAwesomeIcon :icon="faGamepad" class="card-pfp-icon"/>
-          <h1>Gamer_Tag123</h1>
+  <div class="card-container">
+    <div class="outer-card">
+      <RotatingHover>
+        <div class="inner-card" :class="{ 'fade-in': props.fadein }">
+          <div class="card-top">
+            <FontAwesomeIcon :icon="faGamepad" class="card-pfp-icon" />
+            <h1>Gamer_Tag123</h1>
+          </div>
+          <div class="card-bottom">
+            <p>
+              <b>Connected Accounts:</b> Valorant, Minecraft, Rocket League, Call of Duty, Steam,
+              Discord
+            </p>
+          </div>
         </div>
-        <div class="card-bottom">
-          <p><b>Connected Accounts:</b>
-            Valorant, Minecraft, Rocket League, Call of Duty, Steam, Discord</p>
-        </div>
-      </div>
-    </RotatingHover>
+      </RotatingHover>
+    </div>
   </div>
-</div>
 </template>
 
 <style scoped>
@@ -63,10 +63,10 @@ p {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  border: 1px solid #9F21E3;
+  border: 1px solid #9f21e3;
   border-radius: 25px;
-  background: rgb(36,31,41);
-  background: linear-gradient(90deg, rgba(36,31,41,1) 0%, rgba(0,0,0,1) 100%);
+  background: rgb(36, 31, 41);
+  background: linear-gradient(90deg, rgba(36, 31, 41, 1) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
 .card-top {
@@ -87,11 +87,11 @@ p {
 .card-pfp-icon {
   margin: 1rem;
   height: 42px;
-  width:  42px;
+  width: 42px;
   padding: 0.5rem;
   font-size: 40px;
-  border: 1px solid #9F21E3;
-  background-color: #9F21E3;
+  border: 1px solid #9f21e3;
+  background-color: #9f21e3;
   border-radius: 45px;
   float: left;
 }

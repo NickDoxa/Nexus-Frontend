@@ -1,6 +1,6 @@
 <template>
   <div class="banner-container">
-    <img alt="game nexus banner" src="../../assets/images/bannerNamedLogo.png" class="fade-in"/>
+    <img alt="game nexus banner" src="../../assets/images/bannerNamedLogo.png" class="fade-in" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@
 img {
   width: 30%;
   height: auto;
-  margin:0;
+  margin: 0;
 }
 
 @media (max-width: 994px) {

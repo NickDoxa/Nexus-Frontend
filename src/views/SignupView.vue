@@ -1,12 +1,9 @@
 <script setup>
-
 import RegisterForm from '@/components/forms/RegisterForm.vue'
 </script>
 
 <template>
-  <RegisterForm/>
+  <RegisterForm />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

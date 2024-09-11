@@ -25,7 +25,7 @@ const NexusPreset = definePreset(Nora, {
       950: '{purple.950}'
     }
   }
-});
+})
 
 app.use(router)
 app.use(PrimeVue, {

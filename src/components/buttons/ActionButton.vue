@@ -18,36 +18,41 @@ const props = defineProps({
 
 const styleObj = computed(() => {
   return {
-    '--color-hover' : props.hovercolor,
-    '--color' : props.textcolor,
-    '--text-decoration' : props.textdecoration ? '' : 'none'
+    '--color-hover': props.hovercolor,
+    '--color': props.textcolor,
+    '--text-decoration': props.textdecoration ? '' : 'none'
   }
 })
-
 </script>
 
 <template>
   <RouterLink :to="props.linkto" :style="styleObj" v-if="props.isrouterlink">
-    <div class="action-btn" :style="{
-      'background-color' : props.backgroundcolor,
-      'width' : props.btnwidth,
-      'min-width' : props.minbtnwidth
-    }">
-      {{props.text}}
-      <span style="margin-left: 0.5rem;">
-        <FontAwesomeIcon v-if="props.useicon" :icon="props.icon" class="btn-icon"/>
+    <div
+      class="action-btn"
+      :style="{
+        'background-color': props.backgroundcolor,
+        width: props.btnwidth,
+        'min-width': props.minbtnwidth
+      }"
+    >
+      {{ props.text }}
+      <span style="margin-left: 0.5rem">
+        <FontAwesomeIcon v-if="props.useicon" :icon="props.icon" class="btn-icon" />
       </span>
     </div>
   </RouterLink>
   <a :href="props.linkto" :style="styleObj" v-else>
-    <div class="action-btn" :style="{
-      'background-color' : props.backgroundcolor,
-      'width' : props.btnwidth,
-      'min-width' : props.minbtnwidth
-    }">
-      {{props.text}}
-      <span style="margin-left: 0.5rem;">
-        <FontAwesomeIcon v-if="props.useicon" :icon="props.icon" class="btn-icon"/>
+    <div
+      class="action-btn"
+      :style="{
+        'background-color': props.backgroundcolor,
+        width: props.btnwidth,
+        'min-width': props.minbtnwidth
+      }"
+    >
+      {{ props.text }}
+      <span style="margin-left: 0.5rem">
+        <FontAwesomeIcon v-if="props.useicon" :icon="props.icon" class="btn-icon" />
       </span>
     </div>
   </a>

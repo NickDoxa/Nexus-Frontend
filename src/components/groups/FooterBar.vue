@@ -3,13 +3,13 @@ import { computed } from 'vue'
 
 const props = defineProps({
   color: String,
-  bordercolor: String,
+  bordercolor: String
 })
 
 const styleObj = computed(() => {
   return {
-    '--color' : props.color,
-    '--bordercolor' : props.bordercolor
+    '--color': props.color,
+    '--bordercolor': props.bordercolor
   }
 })
 </script>
@@ -27,7 +27,7 @@ const styleObj = computed(() => {
   height: 6rem;
   width: 100%;
   color: var(--color);
-  border-top:2px dashed var(--bordercolor);
+  border-top: 2px dashed var(--bordercolor);
 }
 
 .footer-box {

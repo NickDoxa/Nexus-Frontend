@@ -8,15 +8,15 @@ const props = defineProps({
 
 const styleObj = computed(() => {
   return {
-    '--columns' : props.columns,
-    '--grid-width' : props.width
+    '--columns': props.columns,
+    '--grid-width': props.width
   }
 })
 </script>
 
 <template>
   <div class="grid-two-column centered-content" :style="styleObj">
-    <slot/>
+    <slot />
   </div>
 </template>
 

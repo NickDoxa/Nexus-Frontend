@@ -15,7 +15,8 @@ const props = defineProps({
       :hovercolor="'#11001C'"
       :linkto="'#nav'"
       :textdecoration="false"
-      :isrouterlink="false"/>
+      :isrouterlink="false"
+    />
   </div>
 </template>
 
