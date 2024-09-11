@@ -50,13 +50,4 @@ export module HttpAPI {
     }
   }
 
-  export async function getSession() {
-    try {
-      const api = await useAPI()
-      return api.get('/api/dev/session')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
 }
