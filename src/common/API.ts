@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-export default(url="http://localhost:8080") => {
+export default(username, password) => {
+  const url ="http://localhost:8080"
   return axios.create({
     headers: {
       'Content-Type': 'application/json',
@@ -8,8 +9,8 @@ export default(url="http://localhost:8080") => {
     },
     baseURL: url,
     auth: {
-      username: 'admin',
-      password: 'password'
+      username: username,
+      password: password
     },
     withCredentials: true
   })
