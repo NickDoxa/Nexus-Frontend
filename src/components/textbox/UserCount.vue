@@ -5,12 +5,15 @@ import delay from '@/common/Delay.js'
 import {vElementVisibility} from '@vueuse/components'
 
 const timeToUpdateSeconds = 2;
-const count = ref<number>(0)
-const updatedCount = ref<number>(0)
+const count = ref<Number>(0)
+const updatedCount = ref<Number>(0)
+const fullyUpdated = ref<Boolean>(false)
 const updateCountToTotal = async () => {
+  if (fullyUpdated.value) return;
+  fullyUpdated.value = true
   if (count.value >= updatedCount.value) return;
   count.value = 0;
-  const totalMillisStep = (timeToUpdateSeconds / updatedCount.value)
+  const totalMillisStep = (timeToUpdateSeconds / updatedCount.value) * 1000
   for (let i = 0; i < updatedCount.value; i++) {
     await delay(totalMillisStep)
     count.value++;
@@ -22,11 +25,9 @@ onBeforeMount(async () => {
     const response = await HomeAPI.getCount()
     //hehehe spoofed user count
     updatedCount.value = response?.data?.userCount ?? 0
-    return true
   } catch (error) {
     console.log(error)
   }
-  return false
 })
 </script>
 
