@@ -1,5 +1,8 @@
 @import './fonts.css';
 @import 'primeflex/primeflex.css';
+@import 'primeflex/primeflex.scss';
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.min.css';
 
 /* TAILWIND CSS */
 
@@ -35,7 +38,7 @@ body {
 
 h1 {
   font-family: NexusHeaderGeo, serif;
-  letter-spacing: 10px;
+  letter-spacing: 0.5rem;
 }
 
 li {
@@ -64,7 +67,7 @@ header {
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 @keyframes fadeInOpacity {
