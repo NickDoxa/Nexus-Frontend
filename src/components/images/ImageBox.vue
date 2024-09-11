@@ -21,7 +21,7 @@ const styleObj = computed(() => {
 <template>
  <div class="img-box-container">
    <FadedComponent :scroll="fadeonscroll">
-     <img :alt="props.alt" :src="'@/assets/images' + props.src" class="img-box" :style="styleObj">
+     <img :alt="props.alt" :src="'src/assets/images/' + props.src" class="img-box" :style="styleObj">
    </FadedComponent>
  </div>
 </template>
