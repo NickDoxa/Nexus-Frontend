@@ -1,33 +1,19 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import FadedComponent from '@/components/animations/FadedComponent.vue'
 const props = defineProps<{
-  height: String
-  width: String
-  fadeonscroll: Boolean
-}>({})
-
-const styleObj = computed(() => {
-  return {
-    '--img-height': props.height,
-    '--img-width': props.width
-  }
-})
+  fadeonscroll: Boolean,
+}>()
 </script>
 
 <template>
   <div class="img-box-container">
-    <FadedComponent :scroll="fadeonscroll">
-      <slot class="img-box" :style="styleObj" />
+    <FadedComponent :scroll="props.fadeonscroll">
+      <slot class="img-box"/>
     </FadedComponent>
   </div>
 </template>
 
 <style scoped>
-.img-box {
-  height: var(--img-height);
-  width: var(--img-width);
-}
 
 .img-box-container {
   display: block;

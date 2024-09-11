@@ -60,6 +60,11 @@ header {
   height: 90%;
 }
 
+.img-box {
+  height: var(--img-height);
+  width: var(--img-width);
+}
+
 /* ANIMATIONS */
 
 .fade-in {

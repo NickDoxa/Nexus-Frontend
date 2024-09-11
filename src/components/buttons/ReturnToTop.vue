@@ -1,9 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import ActionButton from '@/components/buttons/ActionButton.vue'
 
-const props = defineProps({
+const props = defineProps<{
   visible: Boolean
-})
+}>()
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
-  scroll: Boolean
-}>({})
+  scroll?: Boolean
+}>()
 </script>
 
 <template>

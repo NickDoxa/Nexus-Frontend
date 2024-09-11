@@ -6,7 +6,32 @@ import HoverScale from '@/components/animations/HoverScale.vue'
 import ActionButton from '@/components/buttons/ActionButton.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ref } from 'vue'
+import RequireAuthentication from '@/components/groups/RequireAuthentication.vue'
+import { useAuth0 } from '@auth0/auth0-vue'
 
+const {loginWithRedirect} = useAuth0()
+const handleLogin = () => {
+  loginWithRedirect({
+    appState:{
+      target: '/'
+    },
+    authorizationParams: {
+      screen_hint: "login"
+    }
+  })
+}
+
+const handleSignup = () => {
+  loginWithRedirect({
+    appState:{
+      target: '/'
+    },
+    authorizationParams: {
+      screen_hint: "signup"
+    }
+  })
+}
+const {isAuthenticated} = useAuth0()
 const dropdownOpen = ref<Boolean>(false)
 const openMenu = () => (dropdownOpen.value = !dropdownOpen.value)
 </script>
@@ -20,23 +45,28 @@ const openMenu = () => (dropdownOpen.value = !dropdownOpen.value)
       <ul class="nav-links">
         <li><RouterLink to="/">Nexus</RouterLink></li>
         <li><RouterLink to="/directory">Directory</RouterLink></li>
-        <li><RouterLink to="/login">Login</RouterLink></li>
+        <li v-if="!isAuthenticated"><a @click="handleLogin" style="cursor: pointer">Login</a></li>
+        <li v-else><RouterLink to="/account">Account</RouterLink></li>
       </ul>
       <div class="side-container">
-        <FadedComponent :scroll="false">
-          <HoverScale :scalesize="1.03">
-            <ActionButton
-              style="float: right"
-              :textdecoration="false"
-              :backgroundcolor="'#9F21E3'"
-              :textcolor="'#F2EBFB'"
-              :hovercolor="'#F2EBFB'"
-              :linkto="'/signup'"
-              :isrouterlink="true"
-              :text="'Sign Up'"
-            />
-          </HoverScale>
-        </FadedComponent>
+        <RequireAuthentication :reverse="true">
+          <FadedComponent :scroll="false">
+            <HoverScale :scalesize="1.03">
+              <div @click="handleSignup">
+                <ActionButton
+                  style="float: right"
+                  :textdecoration="false"
+                  :backgroundcolor="'#9F21E3'"
+                  :textcolor="'#F2EBFB'"
+                  :hovercolor="'#F2EBFB'"
+                  :linkto="'#'"
+                  :isrouterlink="false"
+                  :text="'Sign Up'"
+                />
+              </div>
+            </HoverScale>
+          </FadedComponent>
+        </RequireAuthentication>
       </div>
       <div class="toggle-btn">
         <a href="#" @click="openMenu" v-if="!dropdownOpen"><FontAwesomeIcon :icon="faBars" /></a>

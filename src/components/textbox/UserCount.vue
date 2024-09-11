@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import HomeAPI from '@/common/HomeAPI.js'
 import { onBeforeMount, ref } from 'vue'
+import { HttpAPI } from '@/common/API'
+import axios from 'axios'
 
 const count = ref<Number>(0)
 
 onBeforeMount(async () => {
   try {
-    const response = await HomeAPI.getCount()
+    const response = await HttpAPI.getCount()
     //hehehe spoofed user count
     count.value = response?.data?.userCount ?? 0
   } catch (error) {
