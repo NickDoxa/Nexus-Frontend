@@ -9,7 +9,7 @@ import { ref } from 'vue'
 import RequireAuthentication from '@/components/groups/RequireAuthentication.vue'
 import { useAuth0 } from '@auth0/auth0-vue'
 
-const {loginWithRedirect} = useAuth0()
+const {loginWithRedirect, logout} = useAuth0()
 const handleLogin = () => {
   loginWithRedirect({
     appState:{
@@ -28,6 +28,14 @@ const handleSignup = () => {
     },
     authorizationParams: {
       screen_hint: "signup"
+    }
+  })
+}
+
+const handleLogout = () => {
+  logout({
+    logoutParams: {
+      returnTo: window.location.origin
     }
   })
 }
@@ -77,8 +85,14 @@ const openMenu = () => (dropdownOpen.value = !dropdownOpen.value)
       <ul>
         <li><RouterLink to="/">Nexus</RouterLink></li>
         <li><RouterLink to="/directory">Directory</RouterLink></li>
-        <li><a href="#" @click="handleLogin">Login</a></li>
-        <li><a href="#" @click="handleSignup">Sign Up</a></li>
+        <RequireAuthentication :reverse="true">
+          <li><a href="#" @click="handleLogin">Login</a></li>
+          <li><a href="#" @click="handleSignup">Sign Up</a></li>
+        </RequireAuthentication>
+        <RequireAuthentication :reverse="false">
+          <li><RouterLink to="/account">Account</RouterLink></li>
+          <li><a href="#" @click="handleLogout">Logout</a></li>
+        </RequireAuthentication>
       </ul>
     </div>
   </header>
