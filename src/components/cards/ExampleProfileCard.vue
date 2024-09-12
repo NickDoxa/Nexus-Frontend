@@ -38,7 +38,7 @@ h1 {
 }
 
 p {
-  padding: 20px;
+  padding: 1.2rem;
 }
 
 .card-container {
@@ -51,7 +51,7 @@ p {
 
 .outer-card {
   width: 70%;
-  height: 200px;
+  height: 10rem;
   min-width: 340px;
   max-width: 380px;
   text-align: center;
@@ -63,7 +63,7 @@ p {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  border: 1px solid #9f21e3;
+  border: 0.12rem solid #9f21e3;
   border-radius: 25px;
   background: rgb(36, 31, 41);
   background: linear-gradient(90deg, rgba(36, 31, 41, 1) 0%, rgba(0, 0, 0, 1) 100%);
@@ -86,10 +86,9 @@ p {
 
 .card-pfp-icon {
   margin: 1rem;
-  height: 42px;
-  width: 42px;
+  height: 2.6rem;
+  width: 2.6rem;
   padding: 0.5rem;
-  font-size: 40px;
   border: 1px solid #9f21e3;
   background-color: #9f21e3;
   border-radius: 45px;
