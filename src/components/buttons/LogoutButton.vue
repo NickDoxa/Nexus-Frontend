@@ -13,7 +13,7 @@ const handleLogout = () => {
 </script>
 
 <template>
-  <div @click="handleLogout">
+  <div @click="handleLogout" style="margin-top: 2rem;">
     <ActionButton linkto="#"
                   text="Logout"
                   :backgroundcolor="'#5B058A'"
