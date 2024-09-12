@@ -56,7 +56,7 @@ const openMenu = () => (dropdownOpen.value = !dropdownOpen.value)
                 <ActionButton
                   style="float: right"
                   :textdecoration="false"
-                  :backgroundcolor="'#9F21E3'"
+                  :backgroundcolor="'#5B058A'"
                   :textcolor="'#F2EBFB'"
                   :hovercolor="'#F2EBFB'"
                   :linkto="'#'"

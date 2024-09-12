@@ -105,6 +105,22 @@ header {
   }
 }
 
+.transition-in {
+  transition: visibility ease-in 1s;
+}
+
+.transition-out {
+  transition: visibility ease-out 1s;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.shown {
+  visibility: visible;
+}
+
 /* APP NAV BAR */
 
 .nav-bar {
