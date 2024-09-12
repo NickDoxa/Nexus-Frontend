@@ -1,35 +1,9 @@
-# nexus
+# Nexus (Vue Frontend)
 
-This template should help get you started developing with Vue 3 in Vite.
+**The frontend Vue 3/PrimeVue framework for my web app [Game Nexus]("https://gamenexus.io")**
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Game Nexus allows players to connect securely using 0Auth2 authentication
+and create a publicly available player card with their favorite games and 
+respective usernames attached. It also allows youtubers and streamers to
+connect their accounts and share their content with other players in the
+directory!
