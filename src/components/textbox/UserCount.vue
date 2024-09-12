@@ -21,7 +21,7 @@ onBeforeMount(async () => {
     <div class="user-count-inner">
       <h1>
         Current User Count:
-        <span style="font-family: NexusBodyHack, sans-serif">
+        <span style="font-family: NexusBodyRetro, serif">
           {{ count === null ? '' : count }}</span
         >
       </h1>

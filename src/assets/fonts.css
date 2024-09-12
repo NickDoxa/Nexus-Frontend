@@ -32,3 +32,8 @@
   font-family: NexusBodyMonda;
   src: url('fonts/mondapick.ttf');
 }
+
+@font-face {
+  font-family: NexusBodyRetro;
+  src: url("fonts/retro.ttf");
+}
