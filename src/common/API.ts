@@ -1,15 +1,17 @@
 import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-vue'
+import { ref } from 'vue'
 
 const url = 'http://localhost:8080'
 
 export module HttpAPI {
+  const token = ref<String>()
   export async function useAPI() {
-    const token = await getToken()
+    await getToken()
     return axios.create({
       headers: {
         'Content-Type': 'application/json',
-        'authorization': `Bearer ${token}`
+        'authorization': `Bearer ${token.value}`
       },
       baseURL: url
     })
@@ -25,14 +27,35 @@ export module HttpAPI {
   }
 
   export async function getToken() {
-    const { getAccessTokenSilently } = useAuth0()
-    return await getAccessTokenSilently()
+    if (!token.value || token.value === '') {
+      const { getAccessTokenSilently } = useAuth0()
+      token.value = await getAccessTokenSilently()
+    }
+    return token.value
   }
 
   export async function getCount() {
     try {
       const api = await useAPIWithoutToken()
       return api.get('/api/home/user-count')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  export async function userExists(id: string) {
+    try {
+      const api = await useAPI()
+      return api.get(`/api/account/${id}/exists`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  export async function createNewUser(user) {
+    try {
+      const api = await useAPI()
+      return api.post('/api/account/create', user)
     } catch (error) {
       console.log(error)
     }

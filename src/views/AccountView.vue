@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { useAuth0 } from '@auth0/auth0-vue'
+import { useAuth0, User } from '@auth0/auth0-vue'
 import { useRouter } from 'vue-router'
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount, reactive, ref } from 'vue'
+import { UserDto } from '@/common/dto/user.dto'
+import { HttpAPI } from '@/common/API'
 
+const validated = ref<Boolean>(false)
 const {logout} = useAuth0()
 const router = useRouter()
-const userid = ref<String>()
-const username = ref<String>()
-const email = ref<String>()
-const picture_src = ref<String>()
+const user = reactive<UserDto>({
+  authId: '',
+  username: '',
+  email: '',
+  picture: ''
+})
 
 const handleLogout = () => {
   logout({
@@ -20,23 +25,54 @@ const handleLogout = () => {
 
 onBeforeMount(async () => {
   const {isAuthenticated} = useAuth0()
-  if (!isAuthenticated.value) await router.push('/')
-  else {
-    username.value = useAuth0().user.value.name ?? ''
-    email.value = useAuth0().user.value.email ?? ''
-    userid.value = useAuth0().user.value.sub ?? ''
-    picture_src.value = useAuth0().user.value.picture ?? ''
+  if (!isAuthenticated.value) {
+    await router.push('/')
+    return
+  }
+  const userValue = useAuth0().user.value
+  user.authId = userValue.sub ?? ''
+  user.username = userValue.name ?? ''
+  user.email = userValue.email ?? ''
+  user.picture = userValue.picture ?? ''
+  try {
+    const exists_response = await HttpAPI.userExists(user.authId)
+    const exists_data:UserDto = exists_response.data
+    if (exists_data.authId === null || exists_data.authId === '') {
+      //NOT FOUND
+      const transferDTO = {
+        authId: user.authId,
+        username: user.username,
+        email: user.email,
+        picture: user.picture
+      }
+      const create_response = await HttpAPI.createNewUser(transferDTO)
+      const create_data = create_response.data
+      validated.value = create_data.authId !== null && create_data.authId !== ''
+    } else {
+      //FOUND
+      user.authId = exists_data.authId
+      user.picture = exists_data.picture
+      user.username = exists_data.username
+      user.email = exists_data.email
+      validated.value = true
+    }
+  } catch (error) {
+    console.log("Request Error!")
+    console.log(error)
   }
 })
 
 </script>
 
 <template>
-  <h1><a href="#" @click="handleLogout">account</a></h1>
-  <code>{{username}}</code><br/>
-  <code>{{email}}</code><br/>
-  <code>{{userid}}</code><br/>
-  <code>{{picture_src}}</code>
+  <div class="centered-content" v-if="validated">
+    <h1><a href="#" @click="handleLogout">account</a></h1>
+    <code>{{user.username}}</code><br/>
+    <code>{{user.email}}</code><br/>
+    <code>{{user.authId}}</code><br/>
+    <code>{{user.picture}}</code>
+  </div>
+  <div class="centered-content"></div>
 </template>
 
 <style scoped>
