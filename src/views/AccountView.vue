@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useAuth0, User } from '@auth0/auth0-vue'
+import { useAuth0 } from '@auth0/auth0-vue'
 import { useRouter } from 'vue-router'
 import { onBeforeMount, reactive, ref } from 'vue'
 import { UserDto } from '@/common/dto/user.dto'
 import { HttpAPI } from '@/common/API'
+import LogoutButton from '@/components/buttons/LogoutButton.vue'
 
 const validated = ref<Boolean>(false)
-const {logout} = useAuth0()
 const router = useRouter()
 const user = reactive<UserDto>({
   authId: '',
@@ -14,14 +14,6 @@ const user = reactive<UserDto>({
   email: '',
   picture: ''
 })
-
-const handleLogout = () => {
-  logout({
-    logoutParams: {
-      returnTo: window.location.origin
-    }
-  })
-}
 
 onBeforeMount(async () => {
   const {isAuthenticated} = useAuth0()
@@ -38,7 +30,6 @@ onBeforeMount(async () => {
     const exists_response = await HttpAPI.userExists(user.authId)
     const exists_data:UserDto = exists_response.data
     if (exists_data.authId === null || exists_data.authId === '') {
-      //NOT FOUND
       const transferDTO = {
         authId: user.authId,
         username: user.username,
@@ -49,11 +40,10 @@ onBeforeMount(async () => {
       const create_data = create_response.data
       validated.value = create_data.authId !== null && create_data.authId !== ''
     } else {
-      //FOUND
       user.authId = exists_data.authId
-      user.picture = exists_data.picture
       user.username = exists_data.username
       user.email = exists_data.email
+      user.picture = exists_data.picture
       validated.value = true
     }
   } catch (error) {
@@ -61,20 +51,14 @@ onBeforeMount(async () => {
     console.log(error)
   }
 })
-
 </script>
 
 <template>
-  <div class="centered-content" v-if="validated">
-    <h1><a href="#" @click="handleLogout">account</a></h1>
-    <code>{{user.username}}</code><br/>
-    <code>{{user.email}}</code><br/>
-    <code>{{user.authId}}</code><br/>
-    <code>{{user.picture}}</code>
+  <!-- VALIDATED CONTENT -->
+  <LogoutButton :validated="validated"/>
+  <!-- LOADER UNTIL VALIDATED -->
+  <div class="centered-content pushed-down transition-out"
+       :class="{'hidden' : validated, 'shown' : !validated}">
+    <img src="@/assets/images/loading.svg" alt="loading"/>
   </div>
-  <div class="centered-content"></div>
 </template>
-
-<style scoped>
-
-</style>
