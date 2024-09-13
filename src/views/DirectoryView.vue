@@ -1,7 +1,11 @@
-<script setup></script>
-
+<script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faCode } from '@fortawesome/free-solid-svg-icons/faCode'
+</script>
 <template>
-  <h1>directory</h1>
+  <div class="centered-content pushed-down">
+    <h1>Under Construction...</h1>
+    <br/>
+    <FontAwesomeIcon :icon="faCode" style="font-size: 2rem"/>
+  </div>
 </template>
-
-<style scoped></style>
