@@ -12,7 +12,6 @@ import { faDiscord } from '@fortawesome/free-brands-svg-icons/faDiscord'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons/faQuestionCircle'
 import ImageBox from '@/components/images/ImageBox.vue'
-import FooterBar from '@/components/groups/FooterBar.vue'
 import InfoCard from '@/components/textbox/InfoCard.vue'
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser'
 import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
@@ -154,7 +153,6 @@ import UserCount from '@/components/textbox/UserCount.vue'
       />
     </FadedComponent>
   </GridGroup>
-  <FooterBar :bordercolor="'#3A015C'" :color="'#FFFFFF'" />
 </template>
 
 <style scoped>

@@ -15,7 +15,7 @@ const styleObj = computed(() => {
 </script>
 
 <template>
-  <div class="footer-container" :style="styleObj">
+  <div class="footer-container centered-content pushed-down" :style="styleObj">
     <div class="footer-box">
       <p>Oasis Network LLC &copy; 2024</p>
     </div>
