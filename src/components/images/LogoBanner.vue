@@ -1,6 +1,10 @@
 <template>
   <div class="banner-container">
-    <img alt="game nexus banner" src="../../assets/images/bannerNamedLogo.png" class="animate-fadein" />
+    <img
+      alt="game nexus banner"
+      src="../../assets/images/bannerNamedLogo.png"
+      class="animate-fadein"
+    />
   </div>
 </template>
 

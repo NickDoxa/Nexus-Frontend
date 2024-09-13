@@ -3,17 +3,17 @@ import { computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const props = defineProps<{
-  backgroundcolor?: String,
-  linkto: String,
-  text: String,
-  textcolor?: String,
-  hovercolor?: String,
-  textdecoration?: Boolean,
-  isrouterlink?: Boolean,
-  useicon?: Boolean,
-  icon?: Object,
-  btnwidth?: String,
-  minbtnwidth?: String,
+  backgroundcolor?: String
+  linkto: String
+  text: String
+  textcolor?: String
+  hovercolor?: String
+  textdecoration?: Boolean
+  isrouterlink?: Boolean
+  useicon?: Boolean
+  icon?: Object
+  btnwidth?: String
+  minbtnwidth?: String
   target?: String
 }>()
 
@@ -42,7 +42,7 @@ const styleObj = computed(() => {
       </span>
     </div>
   </RouterLink>
-  <a :href="props.linkto" :target='props.target' :style="styleObj" v-else>
+  <a :href="props.linkto" :target="props.target" :style="styleObj" v-else>
     <div
       class="action-btn"
       :style="{

@@ -11,7 +11,7 @@ export module HttpAPI {
     return axios.create({
       headers: {
         'Content-Type': 'application/json',
-        'authorization': `Bearer ${token.value}`
+        authorization: `Bearer ${token.value}`
       },
       baseURL: url
     })
@@ -60,5 +60,4 @@ export module HttpAPI {
       console.log(error)
     }
   }
-
 }

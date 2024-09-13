@@ -27,46 +27,52 @@ import UserCount from '@/components/textbox/UserCount.vue'
   </div>
   <!-- ACTION BUTTONS -->
   <GridGroup :columns="'1fr 1fr 1fr'" :width="'40%'">
-    <FadedComponent :scroll="false"><HoverScale :scalesize="1.02">
-      <ActionButton
-        :text="'Youtube'"
-        :icon="faYoutube"
-        :useicon="true"
-        :backgroundcolor="'#F2EBFB'"
-        :linkto="'https://youtube.com/channel/UCTAoQCdTyJ1W9xleINYJspg'"
-        :hovercolor="'#8c2f39'"
-        :textcolor="'#b23a48'"
-        :btnwidth="'70%'"
-        :minbtnwidth="'150px'"
-        :target="'_blank'"/>
-    </HoverScale></FadedComponent>
-    <FadedComponent :scroll="false"><HoverScale :scalesize="1.02">
-      <ActionButton
-        :text="'GitHub'"
-        :icon="faGithub"
-        :useicon="true"
-        :backgroundcolor="'#F2EBFB'"
-        :linkto="'https://github.com/nickdoxa'"
-        :hovercolor="'#344e41'"
-        :textcolor="'#3a5a40'"
-        :btnwidth="'70%'"
-        :minbtnwidth="'150px'"
-        :target="'_blank'"/>
-    </HoverScale></FadedComponent>
-    <FadedComponent :scroll="false"><HoverScale :scalesize="1.02">
-      <!-- TODO add correct link once server is made -->
-      <ActionButton
-        :text="'Discord'"
-        :icon="faDiscord"
-        :useicon="true"
-        :backgroundcolor="'#F2EBFB'"
-        :linkto="'https://discord.gg/'"
-        :hovercolor="'#1b263b'"
-        :textcolor="'#415a77'"
-        :btnwidth="'70%'"
-        :minbtnwidth="'150px'"
-        :target="'_blank'"/>
-    </HoverScale></FadedComponent>
+    <FadedComponent :scroll="false"
+      ><HoverScale :scalesize="1.02">
+        <ActionButton
+          :text="'Youtube'"
+          :icon="faYoutube"
+          :useicon="true"
+          :backgroundcolor="'#F2EBFB'"
+          :linkto="'https://youtube.com/channel/UCTAoQCdTyJ1W9xleINYJspg'"
+          :hovercolor="'#8c2f39'"
+          :textcolor="'#b23a48'"
+          :btnwidth="'70%'"
+          :minbtnwidth="'150px'"
+          :target="'_blank'"
+        /> </HoverScale
+    ></FadedComponent>
+    <FadedComponent :scroll="false"
+      ><HoverScale :scalesize="1.02">
+        <ActionButton
+          :text="'GitHub'"
+          :icon="faGithub"
+          :useicon="true"
+          :backgroundcolor="'#F2EBFB'"
+          :linkto="'https://github.com/nickdoxa'"
+          :hovercolor="'#344e41'"
+          :textcolor="'#3a5a40'"
+          :btnwidth="'70%'"
+          :minbtnwidth="'150px'"
+          :target="'_blank'"
+        /> </HoverScale
+    ></FadedComponent>
+    <FadedComponent :scroll="false"
+      ><HoverScale :scalesize="1.02">
+        <!-- TODO add correct link once server is made -->
+        <ActionButton
+          :text="'Discord'"
+          :icon="faDiscord"
+          :useicon="true"
+          :backgroundcolor="'#F2EBFB'"
+          :linkto="'https://discord.gg/'"
+          :hovercolor="'#1b263b'"
+          :textcolor="'#415a77'"
+          :btnwidth="'70%'"
+          :minbtnwidth="'150px'"
+          :target="'_blank'"
+        /> </HoverScale
+    ></FadedComponent>
   </GridGroup>
   <!-- TEXT: HOW DOES IT WORK-->
   <GridGroup :columns="'1fr 1fr'" :width="'70%'">
@@ -95,7 +101,8 @@ import UserCount from '@/components/textbox/UserCount.vue'
           :icon="faUser"
           :header="'Customize'"
           :text="'Your account. Your way! On Nexus you can choose what kind of profile you show to the other gamers in the world with custom profile pictures, statuses, connections, and more!'"
-        /> </HoverScale>
+        />
+      </HoverScale>
     </FadedComponent>
     <FadedComponent :scroll="true"
       ><HoverScale :scalesize="1.02">
@@ -106,7 +113,8 @@ import UserCount from '@/components/textbox/UserCount.vue'
           :icon="faSackXmark"
           :header="'Free'"
           :text="'The Nexus directory has been and will always be free! Search for any player or platform for free with no strings attached!'"
-        /> </HoverScale>
+        />
+      </HoverScale>
     </FadedComponent>
     <FadedComponent :scroll="true"
       ><HoverScale :scalesize="1.02">
@@ -117,18 +125,23 @@ import UserCount from '@/components/textbox/UserCount.vue'
           :icon="faLock"
           :header="'Secure'"
           :text="'Your data is always kept safe on Nexus. You choose what data to display publicly or privately before its stored in our secure 0Auth2 encrypted database!'"
-        /> </HoverScale>
+        />
+      </HoverScale>
     </FadedComponent>
   </GridGroup>
   <!-- USER COUNT -->
   <FadedComponent :scroll="true">
-    <UserCount/>
+    <UserCount />
   </FadedComponent>
   <!-- TEXT: WHATS THE POINT -->
   <GridGroup :columns="'1fr 1fr'" :width="'70%'">
     <ImageBox :height="'250px'" :width="'auto'" :fadeonscroll="true">
-      <img src="@/assets/images/connected.png" alt="Connected Diagram"
-      :style="{'--img-height' : '15rem', '--img-width' : 'auto'}" class="img-box"/>
+      <img
+        src="@/assets/images/connected.png"
+        alt="Connected Diagram"
+        :style="{ '--img-height': '15rem', '--img-width': 'auto' }"
+        class="img-box"
+      />
     </ImageBox>
     <FadedComponent :scroll="true">
       <TextWithHeader

@@ -9,25 +9,25 @@ import { ref } from 'vue'
 import RequireAuthentication from '@/components/groups/RequireAuthentication.vue'
 import { useAuth0 } from '@auth0/auth0-vue'
 
-const {loginWithRedirect, logout} = useAuth0()
+const { loginWithRedirect, logout } = useAuth0()
 const handleLogin = () => {
   loginWithRedirect({
-    appState:{
+    appState: {
       target: '/'
     },
     authorizationParams: {
-      screen_hint: "login"
+      screen_hint: 'login'
     }
   })
 }
 
 const handleSignup = () => {
   loginWithRedirect({
-    appState:{
+    appState: {
       target: '/'
     },
     authorizationParams: {
-      screen_hint: "signup"
+      screen_hint: 'signup'
     }
   })
 }
@@ -39,7 +39,7 @@ const handleLogout = () => {
     }
   })
 }
-const {isAuthenticated} = useAuth0()
+const { isAuthenticated } = useAuth0()
 const dropdownOpen = ref<Boolean>(false)
 const openMenu = () => (dropdownOpen.value = !dropdownOpen.value)
 </script>
