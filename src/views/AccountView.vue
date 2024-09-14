@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useAuth0, User } from '@auth0/auth0-vue'
+import { useAuth0 } from '@auth0/auth0-vue'
 import { useRouter } from 'vue-router'
-import { onBeforeMount, reactive, ref } from 'vue'
+import { defineAsyncComponent, onBeforeMount, reactive, ref } from 'vue'
 import { UserDto } from '@/common/dto/user.dto'
 import { HttpAPI } from '@/common/API'
 import LogoutButton from '@/components/buttons/LogoutButton.vue'
@@ -9,6 +9,9 @@ import ProfileCard from '@/components/cards/ProfileCard.vue'
 import { CardDto } from '@/common/dto/card.dto'
 
 const validated = ref<Boolean>(false)
+const hideLogout = reactive({
+  hide: false
+})
 const router = useRouter()
 
 const setUserValuesByAuth = (userValues) => {
@@ -24,7 +27,12 @@ const getDefaultCard: CardDto = () => {
     backgroundColorHex: '#000000',
     textColorHex: '#FFFFFF',
     favoriteGame: 'Not Set',
-    platform: 'Not Set'
+    platform: 'Not Set',
+    games: [{
+      game: 'None Set',
+      username: 'None Set',
+      shown: false
+    }]
   }
 }
 
@@ -44,6 +52,23 @@ const setUserValues = (userValues: UserDto) => {
   user.email = userValues.email ?? ''
   user.picture = userValues.picture ?? ''
   user.card = userValues.card ?? undefined
+}
+
+async function fullUpdateUser(userValues: UserDto) {
+  console.log("RECEIVED IN AccountView.vue:\n" + JSON.stringify(userValues))
+  setUserValues(userValues)
+  try {
+    const update_response = await HttpAPI.updateUser(userValues);
+    const update_data = update_response.data
+    if (update_data.authId === null || update_data.authId === '') {
+      console.log("UPDATED FAILED")
+    } else {
+      console.log("UPDATED SUCCESSFULLY")
+    }
+  } catch(error) {
+    console.log('Request Error!')
+    console.log(error)
+  }
 }
 
 const user = reactive<UserDto>({
@@ -70,6 +95,7 @@ onBeforeMount(async () => {
       const create_data:UserDto = create_response.data
       setUserValues(create_data)
       validated.value = create_data.authId !== null && create_data.authId !== ''
+      if (!validated.value) await router.push('/')
     } else {
       setUserValues(exists_data)
       validated.value = true
@@ -78,6 +104,7 @@ onBeforeMount(async () => {
     console.log('Request Error!')
     console.log(error)
   }
+  console.log("FINISHED MOUNTING AccountView.vue")
 })
 </script>
 
@@ -87,8 +114,12 @@ onBeforeMount(async () => {
     class="transition-in animate-fadein centered-content pushed-down"
     :class="{ hidden: !validated, shown: validated }"
   >
-    <ProfileCard :user="user" :validated="validated"/>
-    <LogoutButton />
+    <ProfileCard :user="user" :validated="validated" :hidelogout="hideLogout"
+                 @update-profile="(u) => {
+                   console.log('RECEIVED IN AccountView.vue@UPDATE-PROFILE:\n' + JSON.stringify(u))
+                   fullUpdateUser(u)}"
+    />
+    <LogoutButton v-if="!hideLogout.hide"/>
   </div>
 
   <!-- LOADER UNTIL VALIDATED -->

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-vue'
 import { ref } from 'vue'
+import { UserDto } from '@/common/dto/user.dto'
 
 const url = 'http://localhost:8080'
 
@@ -52,7 +53,7 @@ export module HttpAPI {
     }
   }
 
-  export async function createNewUser(user) {
+  export async function createNewUser(user: UserDto) {
     try {
       const api = await useAPI()
       return api.post('/api/account/create', user)
@@ -60,4 +61,14 @@ export module HttpAPI {
       console.log(error)
     }
   }
+
+  export async function updateUser(user: UserDto) {
+    try {
+      const api = await useAPI()
+      return api.patch('/api/account/edit', user)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 }
