@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { UserDto } from '@/common/dto/user.dto'
 import { CardDto } from '@/common/dto/card.dto'
 import EditProfile from '@/components/forms/EditProfile.vue'
