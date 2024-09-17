@@ -3,8 +3,12 @@ import { ref, watch } from 'vue'
 import { UserDto } from '@/common/dto/user.dto'
 import { CardDto } from '@/common/dto/card.dto'
 import EditProfile from '@/components/forms/EditProfile.vue'
+import { HttpAPI } from '@/common/API'
+import { ImageDto } from '@/common/dto/image.dto'
 
 const editMode = ref<boolean>(false)
+const editPfp = ref<boolean>(false)
+const pfpSource = ref<string>('')
 const usePicture = ref<boolean>(false)
 const useEmail = ref<boolean>(false)
 const card = ref<CardDto>({
@@ -31,18 +35,33 @@ const toggleEdit = () => {
   props.hidelogout.hide = !props.hidelogout.hide
 }
 
+const togglePfpEdit = () => {
+  editPfp.value = !editPfp.value
+}
+
 const saveProfile = (user) => {
-  console.log("PASSING UP FROM ProfileCard.vue:\n" + JSON.stringify(user))
   emit('updateProfile', user)
   toggleEdit()
 }
 
+const setPfp = async () => {
+  const pfp_response = await HttpAPI.getProfilePicture(props.user.authId)
+  const pfp_data:ImageDto = pfp_response.data
+  pfpSource.value = 'data:image/png;base64,' + pfp_data.image
+}
+
+const onUploadPfp = async (event) => {
+  await HttpAPI.setProfilePicture(props.user.authId, event.files[0])
+  await setPfp()
+}
+
 watch(props.user, async () => {
   usePicture.value = props.user.picture !== null && props.user.picture !== ''
+  if (usePicture.value && !props.user.useFilePicture) pfpSource.value = props.user.picture
+  if (props.user.useFilePicture) await setPfp()
   useEmail.value = props.user.email !== null && props.user.email !== ''
   props.user.username = props.user.username === '' ? 'Name' : props.user.username
   card.value = props.user.card
-  console.log("UPDATED props.user IN ProfileCard.vue:\n" + JSON.stringify(props.user))
 })
 
 </script>
@@ -52,8 +71,18 @@ watch(props.user, async () => {
     <Card style="width: 25rem; overflow: hidden; margin-top: 2rem" class="centered-content">
       <template #header>
         <br />
-        <img :src="user.picture" alt="Profile Picture" class="profile-pfp" v-if="usePicture" />
-        <Avatar icon="pi pi-user" class="default-icon" size="xlarge" v-else shape="circle" />
+        <a @click="togglePfpEdit">
+          <img :src="pfpSource" alt="Profile Picture" class="profile-pfp" v-if="usePicture" />
+          <Avatar icon="pi pi-user" class="default-icon" size="xlarge" v-else shape="circle" />
+        </a>
+        <Dialog v-model:visible="editPfp">
+          <div class="centered-content">
+            <p><strong>Upload a png profile picture for your account!</strong> <i>(Max size is 1mb)</i></p><br/>
+            <FileUpload mode="basic" custom-upload accept="image/png"
+                        :maxFileSize="1000000" @select="onUploadPfp" :auto="true"
+                        chooseLabel="Browse" />
+          </div>
+        </Dialog>
       </template>
       <template #title>
         <p style="font-size: 2rem">{{ user.username }}</p>

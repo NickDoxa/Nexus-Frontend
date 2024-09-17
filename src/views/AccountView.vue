@@ -57,15 +57,16 @@ const setUserValues = (userValues: UserDto) => {
 }
 
 async function fullUpdateUser(userValues: UserDto) {
-  console.log("RECEIVED IN AccountView.vue:\n" + JSON.stringify(userValues))
   setUserValues(userValues)
   try {
     const update_response = await HttpAPI.updateUser(userValues);
     const update_data = update_response.data
     if (update_data.authId === null || update_data.authId === '') {
-      console.log("UPDATED FAILED")
+      //TODO ADD NOTIFICATION FOR THIS
+      console.log("Updating User Failed!")
     } else {
-      console.log("UPDATED SUCCESSFULLY")
+      //TODO ADD NOTIFICATION FOR THIS TOO
+      console.log("Updated User Successfully!")
     }
   } catch(error) {
     console.log('Request Error!')
@@ -107,7 +108,6 @@ onBeforeMount(async () => {
     console.log('Request Error!')
     console.log(error)
   }
-  console.log("FINISHED MOUNTING AccountView.vue")
 })
 </script>
 
@@ -118,9 +118,7 @@ onBeforeMount(async () => {
     :class="{ hidden: !validated, shown: validated }"
   >
     <ProfileCard :user="user" :validated="validated" :hidelogout="hideLogout"
-                 @update-profile="(u) => {
-                   console.log('RECEIVED IN AccountView.vue@UPDATE-PROFILE:\n' + JSON.stringify(u))
-                   fullUpdateUser(u)}"
+                 @update-profile="(u) => {fullUpdateUser(u)}"
     />
     <LogoutButton v-if="!hideLogout.hide"/>
   </div>

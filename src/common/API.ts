@@ -18,6 +18,17 @@ export module HttpAPI {
     })
   }
 
+  export async function useMultiPartAPI() {
+    await getToken()
+    return axios.create({
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        authorization: `Bearer ${token.value}`
+      },
+      baseURL: url
+    })
+  }
+
   export async function useAPIWithoutToken() {
     return axios.create({
       headers: {
@@ -66,6 +77,26 @@ export module HttpAPI {
     try {
       const api = await useAPI()
       return api.patch('/api/account/edit', user)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  export async function getProfilePicture(id: string) {
+    try {
+      const api = await useAPI()
+      return api.get(`/api/account/${id}/get-profile-picture`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  export async function setProfilePicture(id: string, file) {
+    try {
+      const api = await useMultiPartAPI()
+      const formData = new FormData()
+      formData.append("file", file)
+      return api.post(`/api/account/${id}/set-profile-picture`, formData)
     } catch (error) {
       console.log(error)
     }

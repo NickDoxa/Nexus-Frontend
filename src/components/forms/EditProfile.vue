@@ -60,7 +60,6 @@ const save = () => {
   props.card.backgroundColorHex = backgroundColorInput.value.charAt(0) === '#' ?
     backgroundColorInput.value : "#" + backgroundColorInput.value
   props.user.card = props.card
-  console.log("PASSING UP FROM EditProfile.vue:\n" + JSON.stringify(props.user))
   emit('saveProfile', props.user)
 }
 </script>
