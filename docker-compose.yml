@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8081:80"
+    networks:
+      - nexus-network
+networks:
+  nexus-network:
+    driver: bridge
