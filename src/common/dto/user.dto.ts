@@ -5,5 +5,6 @@ export type UserDto = {
   username?: string
   email?: string
   picture?: string
+  useFilePicture: boolean
   card: CardDto
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAuth0 } from '@auth0/auth0-vue'
 import { useRouter } from 'vue-router'
-import { defineAsyncComponent, onBeforeMount, reactive, ref } from 'vue'
+import { onBeforeMount, reactive, ref } from 'vue'
 import { UserDto } from '@/common/dto/user.dto'
 import { HttpAPI } from '@/common/API'
 import LogoutButton from '@/components/buttons/LogoutButton.vue'
@@ -42,6 +42,7 @@ const getDefaultUser: UserDto = () => {
     username: user.username,
     email: user.email,
     picture: user.picture,
+    useFilePicture: false,
     card: getDefaultCard()
   }
 }
@@ -51,6 +52,7 @@ const setUserValues = (userValues: UserDto) => {
   user.username = userValues.username ?? ''
   user.email = userValues.email ?? ''
   user.picture = userValues.picture ?? ''
+  user.useFilePicture = userValues.useFilePicture ?? false
   user.card = userValues.card ?? undefined
 }
 
@@ -76,6 +78,7 @@ const user = reactive<UserDto>({
   username: '',
   email: '',
   picture: '',
+  useFilePicture: false,
   card: getDefaultCard()
 })
 
