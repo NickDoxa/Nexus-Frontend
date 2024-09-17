@@ -72,14 +72,19 @@ watch(props.user, async () => {
       <template #header>
         <br />
         <a @click="togglePfpEdit">
-          <img :src="pfpSource" alt="Profile Picture" class="profile-pfp" v-if="usePicture" />
-          <Avatar icon="pi pi-user" class="default-icon" size="xlarge" v-else shape="circle" />
+          <img :src="pfpSource" alt="Profile Picture" class="profile-pfp" v-if="usePicture"
+               v-tooltip="'Click to change'"
+          />
+          <Avatar icon="pi pi-user" class="default-icon" size="xlarge" v-else shape="circle"
+          />
         </a>
         <Dialog v-model:visible="editPfp">
           <div class="centered-content">
-            <p><strong>Upload a png profile picture for your account!</strong> <i>(Max size is 1mb)</i></p><br/>
+            <p>Upload a png profile picture for your account! <i>(Max size is 1 mb)</i></p><br/>
             <FileUpload mode="basic" custom-upload accept="image/png"
-                        :maxFileSize="1000000" @select="onUploadPfp" :auto="true"
+                        :maxFileSize="1000000"
+                        @select="onUploadPfp"
+                        :auto="true"
                         chooseLabel="Browse" />
           </div>
         </Dialog>

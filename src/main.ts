@@ -8,6 +8,7 @@ import PrimeVue from 'primevue/config'
 import AnimateOnScroll from 'primevue/animateonscroll'
 import Nora from '@primevue/themes/nora'
 import { definePreset } from '@primevue/themes'
+import Tooltip from 'primevue/tooltip'
 
 const app = createApp(App)
 const NexusPreset = definePreset(Nora, {
@@ -45,5 +46,6 @@ app.use(
     }
   })
 )
+app.directive('tooltip', Tooltip);
 app.directive('animateonscroll', AnimateOnScroll)
 app.mount('#app')
