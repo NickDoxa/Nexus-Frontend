@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faCode } from '@fortawesome/free-solid-svg-icons/faCode'
+import FadedComponent from '@/components/animations/FadedComponent.vue'
+
+
 </script>
 <template>
   <div class="centered-content pushed-down">
-    <h1>Under Construction...</h1>
-    <br/>
-    <FontAwesomeIcon :icon="faCode" style="font-size: 2rem"/>
+    <FadedComponent>
+      <ScrollPanel style="height:40rem;">
+
+      </ScrollPanel>
+    </FadedComponent>
   </div>
 </template>

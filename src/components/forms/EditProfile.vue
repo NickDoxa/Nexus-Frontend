@@ -133,7 +133,7 @@ const save = () => {
           <Button type="button" label="Add" @click="addGame"></Button>
         </div>
       </Dialog>
-      <ScrollPanel>
+      <ScrollPanel style="height: 10rem;">
         <div v-if="card.games && card.games.length > 0">
           <div class="game-card" v-for="game in card.games">
             <p><strong>{{game.game}}:</strong> {{game.username}}</p>
@@ -189,6 +189,7 @@ const save = () => {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 1rem;
 }
 
 .game-buttons {

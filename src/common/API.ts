@@ -102,4 +102,13 @@ export module HttpAPI {
     }
   }
 
+  export async function getDirectoryPage(page: number, size: number) {
+    try {
+      const api = await useAPI()
+      return api.get(`/api/directory/cards?page=${page}&size=${size}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 }
