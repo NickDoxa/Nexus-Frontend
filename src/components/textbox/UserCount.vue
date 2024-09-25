@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
 import { HttpAPI } from '@/common/API'
-import axios from 'axios'
 
 const count = ref<Number>(0)
 
