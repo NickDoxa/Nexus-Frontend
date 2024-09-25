@@ -12,7 +12,7 @@ const props = defineProps({
   <div class="card-container">
     <div class="outer-card">
       <RotatingHover>
-        <div class="inner-card" :class="{ 'fade-in': props.fadein }">
+        <div class="inner-card">
           <div class="card-top">
             <FontAwesomeIcon :icon="faGamepad" class="card-pfp-icon" />
             <h1>Gamer_Tag123</h1>

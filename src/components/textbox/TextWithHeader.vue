@@ -1,16 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-const props = defineProps({
+const props = defineProps<{
   title: String,
   text: String,
   headercolor: String,
   textcolor: String,
   useicon: Boolean,
-  icon: Object,
-  fadein: Boolean
-})
+  icon: Object
+}>()
 
 const styleObj = computed(() => {
   return {
@@ -21,7 +20,7 @@ const styleObj = computed(() => {
 </script>
 
 <template>
-  <div :class="{ 'fade-in': fadein }" class="text-with-header">
+  <div class="text-with-header">
     <h1 :style="styleObj">{{ title }} <FontAwesomeIcon :icon="icon" v-if="useicon" /></h1>
     <br />
     <p :style="styleObj">{{ text }}</p>
